@@ -1,0 +1,53 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pyenv
+.python-version
+
+# Pylint configuration
+.pylintrc
+
+# MyPy configuration
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pytest
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Sphinx documentation
+docs/_build/
+
+# VS Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# MacOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+
+# IDEs
+.idea/
+.vscode/
+#not using jupyter notebook but yea
