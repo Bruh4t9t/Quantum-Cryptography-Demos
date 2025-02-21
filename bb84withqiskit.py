@@ -4,8 +4,8 @@ from qiskit_aer.primitives import SamplerV2
 from bb84 import BB84_simulation# Used to generate random bits and basis from the bb84 simulation in the other file
 #'''
 # Uncomment above line if you want to see how the key distribution works with one qubit and how superpostioning works
-
-bb84 = BB84_simulation(lenght=20)
+expected_key = int(input("Enter key length: "))
+bb84 = BB84_simulation(lenght=(expected_key*2+random.randint(1,expected_key/2)))# Ensure that this is greater than 2 times the expected key e.g. if the final key should be 32 bits then put a number > 64
 alice_random_bits = bb84.generate_random_bits(bb84.lenght)
 alice_random_bases = bb84.generate_random_base(bb84.lenght)
 bob_random_bases = bb84.generate_random_base(bb84.lenght)
@@ -35,9 +35,10 @@ job = sampler.run([simulation_circuit], shots=1)
 result_ideal = job.result()
 counts_ideal = result_ideal[0].data.meas.get_counts()#Retrieves measured bits
 #print(counts_ideal)
+
 print()
 print("Bob bases: ",bob_random_bases)
-key = list(counts_ideal.keys())[0][::-1]  
+key = list(counts_ideal.keys())[0][::-1]  # Reverses key length beacuse for some reason the simulator stores key in little-endian format
 print("Bob receives: ", key)
 
 no_match = [i for i in range(len(alice_random_bases)) if alice_random_bases[i] != bob_random_bases[i]]# Calculates postions where basis dont match
@@ -45,6 +46,14 @@ print("Bases dont match in these postions: ",no_match)
 
 sifted_key = [key[i] for i in range(len(key)) if i not in no_match]# Sifts key to find where basis between Alice and Bob match
 print("Sifted key: ","".join(sifted_key),f"({len(sifted_key)} bits)")
+
+if len(sifted_key) < expected_key:
+    print("Sorry generated key is less than expected key, please try again")
+elif len(sifted_key) >= expected_key:
+    sifted_key = sifted_key[:expected_key]
+    print("Your final key: ","".join(sifted_key),f"({len(sifted_key)} bits)")
+    
+    
         
 '''
 circuit = QuantumCircuit(1, 1)
