@@ -14,7 +14,7 @@ class BB84_simulation():
             else: randombase.append("x")
         return randombase
 
-    def mappingfuntion(self,bitBase): #Mapping functions that takes in a tuple with the bit and the base and encoded it to produce a qubit
+    def __mappingfuntion__(self,bitBase): #Mapping functions that takes in a tuple with the bit and the base and encoded it to produce a qubit, Should only be called inside the file
         if bitBase[0] == "+":
             if bitBase[1] == "1": return "|1>"
             else: return "|0>"
@@ -24,7 +24,7 @@ class BB84_simulation():
 
     def encode_qubits(self,randombit,randombase):#Encodes a list of qubits
         tempdict = list(zip(randombase,randombit))
-        qubitsList = [self.mappingfuntion(i) for i in tempdict]
+        qubitsList = [self.__mappingfuntion__(i) for i in tempdict]
         return list(qubitsList)
 
     def measure_qubits(self,qubits,bases):# Measures bits based on base given 
