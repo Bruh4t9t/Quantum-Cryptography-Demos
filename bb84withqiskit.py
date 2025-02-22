@@ -5,7 +5,7 @@ from bb84 import BB84_simulation# Used to generate random bits and basis from th
 #'''
 # Uncomment above line if you want to see how the key distribution works with one qubit and how superpostioning works
 expected_key = int(input("Enter key length: "))
-bb84 = BB84_simulation(lenght=(expected_key*2+random.randint(1,expected_key/2)))# Ensure that this is greater than 2 times the expected key e.g. if the final key should be 32 bits then put a number > 64
+bb84 = BB84_simulation(lenght=(expected_key*2+random.randint(1,expected_key/2)),eavesdropper=False)# Ensure that this is greater than 2 times the expected key e.g. if the final key should be 32 bits then put a number > 64
 alice_random_bits = bb84.generate_random_bits(bb84.lenght)
 alice_random_bases = bb84.generate_random_base(bb84.lenght)
 bob_random_bases = bb84.generate_random_base(bb84.lenght)
