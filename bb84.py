@@ -1,6 +1,7 @@
 import random
+
 class BB84_simulation():
-    def __init__(self,lenght=32,eavesdropper=True):
+    def __init__(self,lenght=32,eavesdropper=False):
         self.lenght = lenght
         self.eavesdropper = eavesdropper
         
