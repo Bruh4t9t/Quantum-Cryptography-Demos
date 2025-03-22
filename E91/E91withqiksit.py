@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'B
 from bb84 import BB84_simulation
 
 length = int(input("Length: "))
+length = length * 2
 E91_simulation = BB84_simulation(lenght=length)
 qc  = QuantumCircuit(length,length)
 
@@ -32,4 +33,19 @@ job = sampler.run([qc], shots=1)
 result_ideal = job.result()
 counts_ideal = result_ideal[0].data.meas.get_counts()
 
-print(counts_ideal)
+
+
+key = list(counts_ideal.keys())[0][::-1]
+
+Alice_key = [key[i] for i in range(len(key)) if i % 2 == 0]
+Bob_key = [key[i] for i in range(len(key)) if i % 2 != 0]
+
+Alice_sifted_key = [Alice_key[i] for i in range(len(Alice_key)) if Alice_base[i] == bob_base[i]]
+Bob_sifted_key = [Bob_key[i] for i in range(len(Bob_key)) if Alice_base[i] == bob_base[i]]
+
+print(Alice_sifted_key)
+print(Bob_sifted_key)
+
+sifted_key = "".join(Bob_sifted_key)
+print(sifted_key)
+
