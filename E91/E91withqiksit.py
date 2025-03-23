@@ -48,4 +48,3 @@ print(Bob_sifted_key)
 
 sifted_key = "".join(Bob_sifted_key)
 print(sifted_key)
-
