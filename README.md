@@ -16,3 +16,27 @@ It works using the following steps
 5. If bob uses the same base as Alice used in the corresponding qubit then he will recieve the right qubit else he will recieve a random qubit e.g. if the qubit is the |1> qubit(base used to encode was the + basis) and bob uses the x basis to measure the qubit, he will recieve a random bit either 1 or 0
 
 6. Alice and Bob will then compare their basis and discard the bits in the positions where the basis do not match(as neither Alice nor Bob would know whether they recived the same bit due to randomisation in Step 5)
+
+
+# Getting Started
+1. Clone the repository
+```
+git clone https://github.com/Bruh4t9t/Quantum-Cryptography-Demos.git
+cd Quantum-Cryptography-Demo
+```
+2. Create a python virtual environment
+   
+```
+python -m venv yourvenv
+```
+3. Run activation script for environment(depends on OS you are using)
+
+
+4. Install dependencies
+```
+pip install -r requirements.txt
+```
+5. Run the file you want to run
+```
+python fileToRun.py
+```
